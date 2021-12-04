@@ -1,0 +1,305 @@
+.section-reg {
+    height: 100vh;
+    background: linear-gradient(135deg, #FCCF31 0%, #F55555 100%);
+    &-wrapper {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &__box {
+            width: 825px;
+            height: 525px;
+            background: #fff;
+            position: relative;
+            border-radius: 10px;
+            @include media('>=LGdesktop') {
+                width: 1025px;
+                height: 725px;
+            }
+            &__logo {
+                background: url('../media/login_and_reg_images/logo.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 160px;
+                height: 70px;
+                margin-top: 5px;
+                @include media('>=LGdesktop') {
+                    width: 195px;
+                    height: 85px;
+                }
+            }
+            &__main {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                &__image {
+                    background: url('../media/login_and_reg_images/woman.png');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 315px;
+                    height: 430px;
+                    margin-left: 30px;
+                    @include media('>=LGdesktop') {
+                        width: 395px;
+                        height: 510px;
+                    }
+                }
+                .blockreg_form {
+                    width: 250px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    display: flex;
+                    margin-bottom: 50px;
+                    @include media('>=LGdesktop') {
+                        width: 350px;
+                        margin-bottom: 0px;
+                    }
+                    .reg_text {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: bolder;
+                        font-size: 20px;
+                        text-align: center;
+                        color: #000000;
+                        letter-spacing: 0.5px;
+                        @include media('>=LGdesktop') {
+                            font-size: 29px;
+                        }
+                    }
+                    .error {
+                        color: #F55555;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 12px;
+                        text-align: center;
+                        @include media('>=LGdesktop') {
+                            width: 400px;
+                            font-size: 16px;
+                        }
+                    }
+
+                    // User Field
+                    .user_fieldreg {
+                        width: 250px;
+                        height: 50px;
+                        background-color: #D2D2D2;
+                        border-radius: 67px;
+                        border: none;
+                        margin-top: 10px;
+                        font-size: 18px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-weight: 600;
+                        color: #454545;
+                        background-image: url('../media/login_and_reg_images/account.png');
+                        background-repeat: no-repeat;
+                        background-size: 20px 20px;
+                        background-position: top 16px left 8px;
+                        text-indent: 35px;
+                        transition: text-indent ease-in-out 0.15s;
+                        @include media('>=LGdesktop') {
+                            width: 350px;
+                            height: 70px;
+                            font-size: 22px;
+                            background-size: 25px 25px;
+                            background-position: top 22px left 9px;
+                        }
+                    }
+                    .user_fieldreg:focus {
+                        background-image: url('');
+                        text-indent: 10px;
+                    }
+                    .user_fieldreg::placeholder {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        color: #454545;
+                        font-size: 18px;
+                        text-indent: 35px;
+                        @include media('>=LGdesktop') {
+                            font-size: 22px;
+                        }
+                    }
+                    .user_fieldreg:focus::placeholder {
+                        text-indent: 10px;
+                    }
+
+                    // Email Field
+                    .email_fieldreg {
+                        width: 250px;
+                        height: 50px;
+                        background: #D2D2D2;
+                        border-radius: 67px;
+                        border: none;
+                        text-indent: 10px;
+                        margin-top: 15px;
+                        font-size: 18px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-weight: 600;
+                        background-image: url('../media/login_and_reg_images/email_icon.png');
+                        background-repeat: no-repeat;
+                        background-size: 20px 15px;
+                        background-position: top 19px left 8px;
+                        text-indent: 35px;
+                        transition: text-indent ease-in-out 0.15s;
+                        @include media('>=LGdesktop') {
+                            width: 350px;
+                            height: 70px;
+                            font-size: 22px;
+                            background-size: 25px 20px;
+                            background-position: top 25px left 9px;
+                        }
+                    }
+                    .email_fieldreg:focus {
+                        background-image: url('');
+                        text-indent: 10px;
+                    }
+                    .email_fieldreg::placeholder {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        color: #454545;
+                        font-size: 18px;
+                        text-indent: 35px;
+                        @include media('>=LGdesktop') {
+                            font-size: 22px;
+                        }
+                    }
+                    .email_fieldreg:focus::placeholder {
+                        text-indent: 10px;
+                    }
+
+                    // Password Field
+                    .password1_fieldreg {
+                        width: 250px;
+                        height: 50px;
+                        background: #D2D2D2;
+                        border-radius: 67px;
+                        border: none;
+                        text-indent: 10px;
+                        margin-top: 15px;
+                        font-size: 18px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-weight: 600;
+                        background-image: url('../media/login_and_reg_images/password.png');
+                        background-repeat: no-repeat;
+                        background-size: 22px 22px;
+                        background-position: top 15px left 8px;
+                        text-indent: 35px;
+                        transition: text-indent ease-in-out 0.15s;
+                        @include media('>=LGdesktop') {
+                            width: 350px;
+                            height: 70px;
+                            font-size: 22px;
+                            background-size: 27px 27px;
+                            background-position: top 21px left 9px;
+                        }
+                    }
+                    .password1_fieldreg:focus {
+                        background-image: url('');
+                        text-indent: 10px;
+                    }
+                    .password1_fieldreg::placeholder {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        color: #454545;
+                        font-size: 18px;
+                        text-indent: 35px;
+                        @include media('>=LGdesktop') {
+                            font-size: 22px;
+                        }
+                    }
+                    .password1_fieldreg:focus::placeholder {
+                        text-indent: 10px;
+                    }
+
+                    // Confirm Password Field
+                    .password2_fieldreg {
+                        width: 250px;
+                        height: 50px;
+                        background: #D2D2D2;
+                        border-radius: 67px;
+                        border: none;
+                        text-indent: 10px;
+                        margin-top: 15px;
+                        font-size: 18px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-weight: 600;
+                        background-image: url('../media/login_and_reg_images/confirm_icon.png');
+                        background-repeat: no-repeat;
+                        background-size: 21px 21px;
+                        background-position: top 16px left 8px;
+                        text-indent: 35px;
+                        transition: text-indent ease-in-out 0.15s;
+                        @include media('>=LGdesktop') {
+                            width: 350px;
+                            height: 70px;
+                            font-size: 22px;
+                            background-size: 25px 25px;
+                            background-position: top 23px left 10px;
+                        }
+                    }
+                    .password2_fieldreg:focus {
+                        background-image: url('');
+                        text-indent: 10px;
+                    }
+                    .password2_fieldreg::placeholder {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        color: #454545;
+                        font-size: 18px;
+                        text-indent: 35px;
+                        @include media('>=LGdesktop') {
+                            font-size: 22px;
+                        }
+                    }
+                    .password2_fieldreg:focus::placeholder {
+                        text-indent: 10px;
+                    }
+                    .submit {
+                        border: none;
+                        width: 250px;
+                        height: 50px;
+                        color: #fff;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 800;
+                        font-size: 21px;
+                        line-height: 29px;
+                        background: #4BCE1C;
+                        border-radius: 67px;
+                        margin-top: 15px;
+                        @include media('>=LGdesktop') {
+                            width: 350px;
+                            height: 70px;
+                        }
+                    }
+                }
+            }
+            .password_rules {
+                position: absolute;
+                bottom: 15px;
+                left: 5px;
+                h1 {
+                    color: #000000;
+                    font-family: 'Montserrat Alternates', sans-serif;
+                    font-size: 16px;
+                    width: 310px;
+                    font-weight: bold;
+                }
+                h5 {
+                    color: #000000;
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 12px;
+                    width: 310px;
+                    font-weight: 100;
+                    display: inline;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="section-create">
+        <div class="section-create-wrapper">
+            <div class="section-create-wrapper__header">
+                <div title="Menu" id="menuToggle">
+                    <input type="checkbox">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div id="menu">
+                        <div class="block-links_c">
+                            <div class="homepage_c">
+                                <div class="homepage_c_icon"></div>
+                                <a class="link_homepage_c" href='/'>Homepage</a>
+                            </div>
+                            <div class="create_c">
+                                <div class="create_c_icon"></div>
+                                <a class="link_create_c" href="/notes/create/">Create note</a>
+                            </div>
+                            <div class="read_c">
+                                <div class="read_c_icon"></div>
+                                <a class="link_read_c" href='/notes/read/'>Read Notes</a>
+                            </div>
+                        </div>
+                        <div class="bottom_c">
+                            <div class="logout_c">
+                                <a href="/auth/logout" class="logout_c_text">logout</a>
+                                <div class="logout_c_icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-create-wrapper__header__logo"></div>
+            </div>
+            <div class="section-create-wrapper__main">
+                <div class="section-create-wrapper__main__box">
+                    <div class="section-create-wrapper__main__box__image"></div>
+                    <div class="block_createform">
+                        <h1 class="create_text">Create Note</h1>
+                        <form class="creation" action="" method="post" enctype='multipart/form-data' autocomplete="off">
+                            {% csrf_token %}
+                        
+                            {{ form.as_p }}
+                            <button class="submit" type="submit">Create note</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    // name
+    document.querySelector("label[for=id_header]").innerHTML = "Note name:";
+    document.getElementById("id_header").classList.add("header_field");
+    document.getElementById("id_header").placeholder = "My note";
+
+    // text
+    document.querySelector("label[for=id_text]").innerHTML = "Note text:";
+    document.getElementById("id_text").classList.add("text_field");
+    document.getElementById("id_text").placeholder = "Enter some note text";
+    
+</script>
+{% endblock %}

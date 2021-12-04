@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Log In{% endblock title %}
+
+
+{% block content %}
+<section class="section-login">
+    <div class="section-login-wrapper">
+        <div class="section-login-wrapper-box">
+            <div class="section-login-wrapper-box__logo"></div>
+            <div class="section-login-wrapper-box__main">
+                <form class="login-form" action="{% url 'login' %}" method="post" autocomplete="off">
+                    {% if form.errors %}
+                        <p class="error">Your username and password didn`t match. Please try again</p>
+                    {% endif %}
+                    <h2 class="login-form__text">Log In</h2>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="forgot">
+                        <a class="forgot_password" href="">Forgot Password?</a>
+                    </div>
+                    <button class="submit">Log In</button>
+                </form>
+                <div class="section-login-wrapper-box__main__register-link">
+                    <a class="register" href="/auth/register/">Create an account</a>
+                    <span id="arrow"></span>
+                </div>
+                <div class="section-login-wrapper-box__main__image"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // username
+    document.getElementById("id_username").classList.add("user_field");
+    document.getElementById("id_username").placeholder = "Name";
+
+    // password
+    document.getElementById("id_password").classList.add("password_field");
+    document.getElementById("id_password").placeholder = "Password";
+</script>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section">
+    <div class="section-wrapper">
+        <div class="section-wrapper-top">
+            <div class="section-wrapper-top__logo"></div>
+            {% if user.is_authenticated %}
+                <div class="section-wrapper-top__logout">
+                    <div class="user_name">
+                        <span class="user">user :</span><span class="profile"> {{ profile.username }}</span>
+                    </div>
+                    <a class="logout" href="/auth/logout">Log Out</a>
+                </div>
+            {% else %}
+                <div class="section-wrapper-top__login">
+                    <a class="login" href="/auth/login">Log In</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="section-wrapper-middle">
+            <div class="section-wrapper-middle__note-image"></div>
+            <div class="section-wrapper-middle__main">
+                <div class="section-wrapper-middle__main__text">
+                    <div class="title">
+                        <h1>Notes App</h1><h2> - note creating app</h2>
+                    </div>
+                    <div class="subtitle">
+                        <p>Here you can create and keep your notes, reminds, product lists, important meetings </p>
+                    </div>
+                </div>
+                <div class="section-wrapper-middle__main__buttons">
+                    <a class="create_note" href="/notes/create_note/">Создать заметку</a>
+                    <a class="read_notes" href="/notes/read_note/">Посмотреть заметки</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
