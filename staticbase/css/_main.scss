@@ -1,0 +1,215 @@
+.section {
+    height: 100vh;
+    background: linear-gradient(135deg, #FCCF31 0%, #F55555 100%);
+    &-wrapper {
+        height: 100vh;
+        &-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__logo {
+                background: url('../media/index_images/logo.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 140px;
+                height: 50px;
+                @include media('>=LGdesktop') {
+                    width: 175px;
+                    height: 60px;
+                }
+            }
+            &__logout {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 450px;
+                .logout {
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 21px;
+                    text-align: center;
+                    color: black;
+                    text-decoration: none;
+                    margin-right: 10px;
+                    @include media('>=LGdesktop') {
+                        font-size: 26px;
+                    }
+                }
+                .user_name {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .user {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 100;
+                        font-size: 21px;
+                        text-align: center;
+                        color: white;
+                        text-decoration: none;
+                        display: inline;
+                    }
+                    .profile {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 100;
+                        font-size: 21px;
+                        text-align: center;
+                        color: #000;
+                        text-decoration: none;
+                        display: inline;
+                        margin-left: 8px;
+                    }
+                }
+            }
+            &__login {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .login {
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 21px;
+                    text-align: center;
+                    color: black;
+                    text-decoration: none;
+                    margin-right: 10px;
+                    @include media('>=LGdesktop') {
+                        font-size: 26px;
+                    }
+                }
+            }
+        }
+        &-middle {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include media('>=LGdesktop') {
+                margin-top: 60px;
+            }
+            &__note-image {
+                background: url('../media/index_images/notes_img.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 370px;
+                height: 372px;
+                margin-left: 60px;
+                @include media('>=LGdesktop') {
+                    width: 470px;
+                    height: 472px;
+                }
+            }
+            &__main {
+                width: 50%;
+                margin-right: 20px;
+                &__text {
+                    margin-bottom: 35px;
+                    .title {
+                        width: 100%;
+                        h1 {
+                            display: inline;
+                            font-family: Montserrat;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 40px;
+                            line-height: 59px;
+                            text-align: center;
+                            color: #000000;
+                            @include media('>=LGdesktop') {
+                                font-size: 55px;
+                            }
+                        }
+                        h2 {
+                            display: inline;
+                            font-family: Montserrat;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 30px;
+                            line-height: 44px;
+                            text-align: center;
+                            color: #000000;
+                            @include media('>=LGdesktop') {
+                                font-size: 45px;
+                            }
+                        }
+                    }
+                    .subtitle {
+                        width: 85%;
+                        p {
+                            font-family: Montserrat;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 21px;
+                            line-height: 26px;
+                            text-align: center;
+                            color: #000;
+                            @include media('>=LGdesktop') {
+                                font-size: 27px;
+                                margin-top: 6px;
+                                line-height: 29px;
+                            }
+                        }
+                    }
+                }
+                &__buttons {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-left: 20px;
+                    align-items: center;
+                    @include media('>=LGdesktop') {
+                        margin-left: 60px;
+                    }
+                    .create_note {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 220px;
+                        height: 55px;
+                        border: none;
+                        border-radius: 86px;
+                        text-decoration: none;
+                        font-family: Montserrat;
+                        font-style: normal;
+                        font-weight: lighter;
+                        font-size: 16px;
+                        line-height: 22px;
+                        color: white;
+                        background: #4BCE1C;
+                        @include media('>=LGdesktop') {
+                            width: 275px;
+                            height: 75px;
+                            font-size: 18px;
+                        }
+                    }
+                    .read_notes {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 220px;
+                        height: 55px;
+                        border: none;
+                        border-radius: 86px;
+                        text-decoration: none;
+                        font-family: Montserrat;
+                        font-style: normal;
+                        font-weight: lighter;
+                        font-size: 16px;
+                        line-height: 22px;
+                        color: white;
+                        background: #4BCE1C;
+                        margin-left: 45px;
+                        @include media('>=LGdesktop') {
+                            width: 275px;
+                            height: 75px;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

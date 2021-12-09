@@ -1,0 +1,583 @@
+.section-read {
+    height: 100vh;
+    background: linear-gradient(135deg, #F05F57 0%, #360940 100%);
+    &-wrapper {
+        height: 100vh;
+        &__header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            
+            // Hamburger Menu
+            #menuToggle {
+                display: block;
+                position: fixed;
+                z-index: 1;
+                -webkit-user-select: none;
+                user-select: none;
+                margin-left: 35px;
+                margin-bottom: 15px;
+                @include media('>=LGdesktop') {
+                    margin-bottom: 20px;
+                }
+            }
+            #menuToggle input {
+                display: block;
+                width: 40px;
+                height: 32px;
+                position: absolute;
+                top: -7px;
+                left: -5px;
+                cursor: pointer;
+                opacity: 0;
+                z-index: 2;
+                -webkit-touch-callout: none;
+            }
+            #menuToggle span {
+                display: block;
+                width: 29px;
+                height: 4px;
+                margin-bottom: 5px;
+                position: relative;
+                background: #000;
+                border-radius: 3px;
+                z-index: 1;
+                transform-origin: 3px 0px;
+                transition: transform 0.2s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+                @include media('>=LGdesktop') {
+                    width: 31px;
+                    height: 5px;
+                }
+            }
+            #menuToggle span:first-child {
+                transform-origin: 0% 0%;
+            }
+            #menuToggle span:nth-last-child(2) {
+                transform-origin: 0% 100%;
+            }
+            #menuToggle input:checked ~ span {
+                opacity: 1;
+                transform: rotate(40deg) translate(11px, -2px);
+                background: #4BCE1C;
+                @include media('>=LGdesktop') {
+                    transform: rotate(40deg) translate(12px, -2px);
+                }
+            }
+            #menuToggle input:checked ~ span:nth-last-child(3) {
+                opacity: 0;
+                transform: rotate(0deg)     
+                    scale(0.2, 0.2);
+            }
+            #menuToggle input:checked ~ span:nth-last-child(2) {
+                opacity: 1;
+                transform: rotate(-40deg) translate(6px, 9px);
+            }
+            #menu {
+                position: absolute;
+                width: 200px;
+                height: 100vh;
+                margin: -100px 0 0 -50px;
+                padding: 50px;
+                padding-top: 125px;
+                background: rgb(224, 211, 211);
+                border-right: 2px solid black;
+                list-style-type: none;
+                transform-origin: 0 0;
+                transform: translate(-100%, 0);
+                transition: transform 0.5s;
+                text-align: center;
+                @include media('>=LGdesktop') {
+                    width: 220px;
+                    height: 100vh;                                                                                  
+                }
+            }
+            #menuToggle input:checked ~ #menu {
+                transform: scale(1.0, 1.0);
+            }
+            .block-links_r {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-top: 10px;
+                .homepage_r {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                    &_icon {
+                        background: url('../media/create_and_read_images/home.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 24px;
+                        height: 24px;
+                        @include media('>=LGdesktop') {
+                            width: 29px;
+                            height: 29px;
+                        }
+                    }
+                    .link_homepage_r {
+                        text-decoration: none;
+                        color: #000;
+                        font-size: 21px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        text-align: center;
+                        letter-spacing: 0.1em;
+                        margin-left: 10px;
+                        transition: 0.5s;
+                        @include media('>=LGdesktop') {
+                            font-size: 23px;
+                        }
+                    }
+                }
+                .homepage_r:hover {
+                    opacity: 0.6;
+                }
+                .create_r {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    margin-top: 15px;
+                    transition: 0.3s ease-in-out;
+                    &_icon {
+                        background: url('../media/create_and_read_images/plus.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 24px;
+                        height: 24px;
+                        @include media('>=LGdesktop') {
+                            width: 29px;
+                            height: 29px;
+                        }
+                    }
+                    .link_create_r {
+                        text-decoration: none;
+                        color: #000;
+                        font-size: 21px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        text-align: center;
+                        letter-spacing: 0.1em;
+                        margin-left: 10px;
+                        transition: 0.5s;
+                        @include media('>=LGdesktop') {
+                            font-size: 23px;
+                        }
+                    }
+                }
+                .create_r:hover {
+                    opacity: 0.6;
+                }
+                .read_r {
+                    margin-top: 15px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                    &_icon {
+                        background: url('../media/create_and_read_images/book.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 24px;
+                        height: 24px;
+                        @include media('>=LGdesktop') {
+                            width: 29px;
+                            height: 29px;                                                                                   
+                        }
+                    }
+                    .link_read_r {
+                        text-decoration: underline dashed;
+                        color: #000;
+                        font-size: 21px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        text-align: center;
+                        letter-spacing: 0.1em;
+                        margin-left: 10px;
+                        transition: 0.5s;
+                        @include media('>=LGdesktop') {
+                            font-size: 23px;
+                        }
+                    }
+                }
+                .read_r:hover {
+                    opacity: 0.6;
+                }
+            }
+            .bottom_r {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: absolute;
+                bottom: 130px;
+                left: 10px;
+                .username_r {
+                    margin-left: 35px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                    .profile_name_r {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        text-align: center;
+                        letter-spacing: 0.1em;
+                        color: #000000;
+                        transition: 0.5s;
+                    }
+                    &_icon {
+                        background: url('../media/login_and_reg_images/account.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 27px;
+                        height: 27px;
+                    }
+                }
+                .username_r:hover {
+                    opacity: 0.6;
+                }
+                .logout_r {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 15px;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                    &_text {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        text-align: center;
+                        letter-spacing: 0.1em;
+                        color: #000;
+                        transition: 0.6s;
+                        text-decoration: none;
+                    }
+                    &_icon {
+                        background: url('../media/create_and_read_images/logout.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 27px;
+                        height: 27px;
+                    }
+                }
+                .logout_r:hover {
+                    opacity: 0.6;
+                }
+            }
+            &__logo {
+                background: url('../media/index_images/logo.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 160px;
+                height: 70px;
+                margin-left: 65px;
+                @include media('>=LGdesktop') {
+                    width: 195px;
+                    height: 85px;
+                }
+            }
+        }
+        &__main {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 78%;
+            @include media('>=LGdesktop') {
+                height: 80%;
+            }
+            &__notes_block {
+                width: 80%;
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pagination {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 600px;
+                    .prev {
+                        background: url('../media/create_and_read_images/arrow.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 25px;
+                        height: 25px;
+                        margin-right: 5px;
+                        @include media('>=LGdesktop') {
+                            width: 35px;
+                            height: 35px;
+                        }
+                    }
+                    .next {
+                        background: url('../media/create_and_read_images/arrow.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 25px;
+                        height: 25px;
+                        transform: rotate(180deg);
+                        margin-left: 5px;
+                        @include media('>=LGdesktop') {
+                            width: 35px;
+                            height: 35px;
+                        }
+                    }
+                    .page {
+                        color: #000;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        text-align: center;
+                        text-decoration: none;
+                        margin-left: 10px;
+                        @include media('>=LGdesktop') {
+                            font-size: 23px;
+                        }
+                    }
+                    .current {
+                        color: #4BCE1C;
+                        border-bottom: 1px solid #4BCE1C;
+                    }
+                }
+                .notes_block {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 70%;
+                    .note {
+                        background-color: #fff;
+                        width: 290px;
+                        height: 250px;
+                        border: none;
+                        border-radius: 10px;
+                        margin-left: 20px;
+                        margin-top: 20px;
+                        position: relative;
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                        @include media('>=LGdesktop') {
+                            width: 350px;
+                            height: 320px;
+                            border: none;
+                            border-radius: 10px;
+                            margin-left: 20px;
+                            margin-top: 20px;
+                            position: relative;
+                            overflow-y: auto;
+                            overflow-x: hidden;
+                        }
+                        &_top {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+                            margin-top: 5px;
+                            .note_header {
+                                margin-left: 20px;
+                                margin-top: 5px;
+                                .header {
+                                    font-family: 'Montserrat Alternates', sans-serif;
+                                    font-style: normal;
+                                    font-weight: bold;
+                                    font-size: 10px;
+                                    color: #000000;
+                                    text-align: center;
+                                    line-height: 20px;
+                                    word-wrap: break-word;
+                                    max-width: 150px;
+                                    @include media('>=LGdesktop') {
+                                        font-size: 18px;
+                                        max-width: 170px;
+                                    }
+                                }
+                            }
+                            .note_date {
+                                margin-right: 20px;
+                                margin-top: 5px;
+                                .date {
+                                    font-family: 'Montserrat Alternates', sans-serif;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 10px;
+                                    line-height: 20px;
+                                    text-align: center;
+                                    color: #4BCE1C;
+                                    @include media('>=LGdesktop') {
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                        &_middle {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 50px;
+                            height: 70px;
+                            .text {
+                                font-family: 'Montserrat Alternates', sans-serif;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 13px;
+                                line-height: 23px;
+                                letter-spacing: 0.1px;
+                                text-align: center;
+                                color: #000000;
+                                max-width: 95%;
+                                word-wrap: break-word;
+                                @include media('>=LGdesktop') {
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                        &_bottom {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 300px;
+                            position: absolute;
+                            left: 3px;
+                            bottom: 3px;
+                            @include media('>=LGdesktop') {
+                                position: absolute;
+                                left: 10px;
+                                bottom: 10px;
+                            }
+                            .mark {
+                                #marker_button {
+                                    background: url('../media/create_and_read_images/marker.png');
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                    width: 22px;
+                                    height: 22px;
+                                    cursor: pointer;
+                                    border: none;
+                                    @include media('>=LGdesktop') {
+                                        width: 28px;
+                                        height: 28px;
+                                    }
+                                }
+                                #marker_button .active {
+                                    background: url('../media/create_and_read_images/green_marker.png');
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                    width: 22px;
+                                    height: 22px;
+                                    cursor: pointer;
+                                    border: none;
+                                    @include media('>=LGdesktop') {
+                                        width: 28px;
+                                        height: 28px;
+                                    }
+                                }
+                                #marker_button_remove {
+                                    background: url('../media/create_and_read_images/green_marker.png');
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                    width: 22px;
+                                    height: 22px;
+                                    cursor: pointer;
+                                    border: none;
+                                    @include media('>=LGdesktop') {
+                                        width: 28px;
+                                        height: 28px;
+                                    }
+                                }
+                            }
+                            .upd_del {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-right: 15px;
+                                @include media('>=LGdesktop') {
+                                    margin-right: 0;
+                                }
+                                .update_btn {
+                                    background: url('../media/create_and_read_images/update.png');
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                    width: 22px;
+                                    height: 22px;
+                                    cursor: pointer;
+                                    @include media('>=LGdesktop') {
+                                        width: 28px;
+                                        height: 28px;
+                                    }
+                                }
+                                .del_btn {
+                                    background: url('../media/create_and_read_images/delete.png');
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                    width: 22px;
+                                    height: 20px;
+                                    cursor: pointer;
+                                    @include media('>=LGdesktop') {
+                                        width: 28px;
+                                        height: 28px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .collections {
+                width: 20%;
+            }
+        }
+    }
+}
+.section-read_new {
+    height: 100vh;
+    background: linear-gradient(135deg, #F05F57 0%, #360940 100%);
+    &-wrapper {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .no_notes {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &_text {
+                font-family: 'Montserrat Alternates', sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 26px;
+                letter-spacing: 0.1px;
+                text-align: center;
+                color: #000000;
+            }
+            &_link {
+                .link {
+                    font-family: 'Montserrat Alternates', sans-serif;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 26px;
+                    letter-spacing: 0.1px;
+                    text-align: center;
+                    text-decoration: wavy underline;
+                    color: #fff;
+                    transition: 0.3s ease-in;
+                }
+                .link:hover {
+                    color: rgba(182, 182, 182, 0.5);
+                }
+            }
+        }
+    }
+}

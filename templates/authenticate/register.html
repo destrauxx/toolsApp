@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block content %}
+<section class="section-reg">
+    <div class="section-reg-wrapper">
+        <div class="section-reg-wrapper__box">
+            <div class="section-reg-wrapper__box__logo"></div>
+            <div class="section-reg-wrapper__box__main">
+                <div class="section-reg-wrapper__box__main__image"></div>
+                    <form class="blockreg_form" action="" method="post">
+                        {% if form.errors %}
+                            <p class="error">Passwords does not match or your password doesn`t include rules at the bottom of the box. Please try again</p>
+                        {% endif %}
+                        <h2 class="reg_text">Sign In</h2>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="submit">Sign In</button>
+                </form>
+            </div>
+            <div class="password_rules">
+                <h1>*Your password mustn`t be:</h1>
+                <h5>too similar,</h5>
+                <h5>too short,</h5>
+                <h5>too common.</h5>
+                <h5>It must contain at least 8 characters.</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // user
+    document.getElementById("id_username").classList.add("user_fieldreg");
+    document.getElementById("id_username").placeholder = "Name";
+
+    // email
+    document.getElementById("id_email").classList.add("email_fieldreg");
+    document.getElementById("id_email").placeholder = "Email";
+
+    // password1
+    document.getElementById("id_password1").classList.add("password1_fieldreg");
+    document.getElementById("id_password1").placeholder = "Password";
+
+    // password2
+    document.getElementById("id_password2").classList.add("password2_fieldreg");
+    document.getElementById("id_password2").placeholder = "Confirm Password";
+</script>
+{% endblock content %}
