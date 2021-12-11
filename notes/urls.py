@@ -5,6 +5,7 @@ from .views import (
     ReadNotesView,
     UpdateNoteView,
     DeleteNoteView,
+    add_note_to_collection,
     create_collection,
     create_collection_form,
     delete_collection,
@@ -19,5 +20,6 @@ urlpatterns = [
     path('collection/create', create_collection, name='create_collection'),
     path('collection/create_form/', create_collection_form, name='create_collection_form'),
     path('collection/<pk>/delete/', delete_collection, name='delete_collection'),
+    path('collection/<collection_pk>/add_note/<note_pk>/', add_note_to_collection, name='add_note_to_collection'),
     path('mark/<pk>/', mark_note_view, name='mark_note'),
 ]
