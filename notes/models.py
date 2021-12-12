@@ -24,7 +24,7 @@ class Note(models.Model):
     is_important = models.BooleanField(null=True, default=False)
 
     class Meta:
-        ordering = ['-date', '-is_important']
+        ordering = ['-date', 'is_important']
 
     def __str__(self):
         return self.header

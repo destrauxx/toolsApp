@@ -292,9 +292,6 @@
             justify-content: space-around;
             align-items: center;
             height: 78%;
-            @include media('>=LGdesktop') {
-                height: 80%;
-            }
             &__notes_block {
                 width: 80%;
                 height: 80%;
@@ -371,13 +368,6 @@
                         @include media('>=LGdesktop') {
                             width: 350px;
                             height: 320px;
-                            border: none;
-                            border-radius: 10px;
-                            margin-left: 20px;
-                            margin-top: 20px;
-                            position: relative;
-                            overflow-y: auto;
-                            overflow-x: hidden;
                         }
                         &_top {
                             width: 100%;
@@ -457,34 +447,8 @@
                                 bottom: 10px;
                             }
                             .mark {
-                                #marker_button {
+                                .marker_button {
                                     background: url('../media/create_and_read_images/marker.png');
-                                    background-repeat: no-repeat;
-                                    background-size: contain;
-                                    width: 22px;
-                                    height: 22px;
-                                    cursor: pointer;
-                                    border: none;
-                                    @include media('>=LGdesktop') {
-                                        width: 28px;
-                                        height: 28px;
-                                    }
-                                }
-                                #marker_button .active {
-                                    background: url('../media/create_and_read_images/green_marker.png');
-                                    background-repeat: no-repeat;
-                                    background-size: contain;
-                                    width: 22px;
-                                    height: 22px;
-                                    cursor: pointer;
-                                    border: none;
-                                    @include media('>=LGdesktop') {
-                                        width: 28px;
-                                        height: 28px;
-                                    }
-                                }
-                                #marker_button_remove {
-                                    background: url('../media/create_and_read_images/green_marker.png');
                                     background-repeat: no-repeat;
                                     background-size: contain;
                                     width: 22px;
@@ -536,6 +500,13 @@
             }
             .collections {
                 width: 20%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                #collections {
+                    width: 200px;
+                }
             }
         }
     }

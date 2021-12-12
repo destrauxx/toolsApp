@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UsernameField
-from django.contrib.auth.views import LoginView
-
 class RegisterForm(UserCreationForm):
     username = UsernameField(label='',)
     email = forms.EmailField(label='',)

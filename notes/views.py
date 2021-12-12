@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy, reverse
-from django.http import HttpResponse, Http404
+from django.urls import reverse_lazy
+from django.http import HttpResponse
 from django.views import View
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView
 
 from django.views.generic import (
                                   CreateView,
@@ -25,35 +23,26 @@ from .forms import (
                         )
 import math
 
+###
 
-
-# Create your views here.
-
-class HomePageView(View):
+class HomePageView(LoginRequiredMixin, View):
     template_name = 'index.html'
 
-    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         user = request.user
         return render(request, 'index.html', {'profile': user})
-
 
 class CreateNoteView(LoginRequiredMixin, CreateView):
     model = Note
     form_class = CreateNoteModelForm
     template_name = 'notes/create_note.html'
     success_url = reverse_lazy('read_notes')
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
         return super().form_valid(form)
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['profile'] = self.request.user
-        return context
-
 
 class UpdateNoteView(LoginRequiredMixin, UpdateView):
     model = Note
@@ -73,13 +62,14 @@ class ReadNotesView(LoginRequiredMixin, ListView):
 
     def get(self, request, *args, **kwargs):
         page = int(request.GET.get('page', 1))
-        sort_by = int(request.GET.get('sort_by', 0))
+        selected_collection = int(request.GET.get('collection', 0))
+        add_mode_collection = int(request.GET.get('add_mode_to', 0))
+
         collections = Collection.objects.filter(user=request.user)
-        if sort_by:
-            notes = Note.objects.filter(user = request.user, collection=sort_by)
+        if selected_collection:
+            notes = Note.objects.filter(user = request.user, collection=selected_collection)
         else:
             notes = Note.objects.filter(user = request.user)
-
 
         start_index = (page * self.paginate_by) - self.paginate_by
         end_index = page * self.paginate_by
@@ -100,7 +90,8 @@ class ReadNotesView(LoginRequiredMixin, ListView):
                                                          'prev': page - 1,
                                                          'pages_count': pages_count,
                                                          'pages_count_list': range(1, pages_count+1),
-                                                        })
+                                                         'add_mode_collection': add_mode_collection,
+                                                         })
 
 def create_collection(request):
     form = CreateCollectionModelForm(request.POST or None)
@@ -134,14 +125,20 @@ def delete_collection(request, pk):
         col.delete()
         return HttpResponse("")
 
+def mark_note_view(request, pk):
+    note = get_object_or_404(Note, id=pk)
 
-class MarkNoteView(LoginRequiredMixin, ListView):
-    queryset = Note.objects.all()
+    if request.method == 'POST':
+        note.is_important = not note.is_important
+        note.save()
+        return HttpResponse("")  
+    
+def add_note_to_collection(request, collection_pk, note_pk):
+    collection = get_object_or_404(Collection, id=collection_pk)
+    note = get_object_or_404(Note, id=note_pk)
 
-    def post(self, request, pk):
-        note = get_object_or_404(Note, id=pk)
-        print(note.is_important)
-        if request.method == 'POST':
-            note.is_important = not note.is_important
-            note.save()
-            return HttpResponse("")
+    if request.method == 'POST':
+        note.collection = collection
+        note.save()
+        print(note.collection)
+        return HttpResponse("")

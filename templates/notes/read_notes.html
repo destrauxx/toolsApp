@@ -1,125 +1,138 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if notes_list|length > 0 %}
-    <section class="section-read">
-        <div class="section-read-wrapper">
-            <div class="section-read-wrapper__header">
-                <div title="Menu" id="menuToggle">
-                    <input type="checkbox">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <div id="menu">
-                        <div class="block-links_r">
-                            <div class="homepage_r">
-                                <div class="homepage_r_icon"></div>
-                                <a class="link_homepage_r" href='/'>Homepage</a>
+        <section class="section-read">
+            <div class="section-read-wrapper">
+                <div class="section-read-wrapper__header">
+                    <div title="Menu" id="menuToggle">
+                        <input type="checkbox">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <div id="menu">
+                            <div class="block-links_r">
+                                <div class="homepage_r">
+                                    <div class="homepage_r_icon"></div>
+                                    <a class="link_homepage_r" href='/'>Homepage</a>
+                                </div>
+                                <div class="create_r">
+                                    <div class="create_r_icon"></div>
+                                    <a class="link_create_r" href="/notes/create/">Create note</a>
+                                </div>
+                                <div class="read_r">
+                                    <div class="read_r_icon"></div>
+                                    <a class="link_read_r" href='/notes/read/'>Read Notes</a>
+                                </div>
                             </div>
-                            <div class="create_r">
-                                <div class="create_r_icon"></div>
-                                <a class="link_create_r" href="/notes/create_note/">Create note</a>
-                            </div>
-                            <div class="read_r">
-                                <div class="read_r_icon"></div>
-                                <a class="link_read_r" href='/notes/read_note/'>Read Notes</a>
-                            </div>
-                        </div>
-                        <div class="bottom_r">
-                            <div class="username_r">
-                                <h2 class="profile_name_r">{{ user.username }}</h2>
-                                <div class="username_r_icon"></div>
-                            </div>
-                            <div class="logout_r">
-                                <a href="/auth/logout" class="logout_r_text">logout</a>
-                                <div class="logout_r_icon"></div>
+                            <div class="bottom_r">
+                                <div class="username_r">
+                                    <h2 class="profile_name_r">{{ user.username }}</h2>
+                                    <div class="username_r_icon"></div>
+                                </div>
+                                <div class="logout_r">
+                                    <a href="/auth/logout" class="logout_r_text">logout</a>
+                                    <div class="logout_r_icon"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="section-create-wrapper__header__logo"></div>
                 </div>
-                <div class="section-create-wrapper__header__logo"></div>
-            </div>
-            <div class="section-read-wrapper__main">
-                <div class="section-read-wrapper__main__notes_block">
-                    <div class="pagination">
-                        {% if prev > 0 %}
-                            <a class="prev" href="?page={{prev}}"></a>
-                        {% endif %}
-                        {% for page in pages_count_list %}
-                            {% if page == current_page %}
-                                <a class="page current" href="?page={{page}}">{{page}}</a>
-                            {% else %}
-                                <a class="page" href="?page={{page}}">{{page}}</a>
+                <div class="section-read-wrapper__main">
+                    <div class="section-read-wrapper__main__notes_block">
+                        <div class="pagination">
+                            {% if prev > 0 %}
+                                <a class="prev" href="?page={{prev}}"></a>
                             {% endif %}
-                        {% endfor %}
-                        {% if next <= pages_count %}
-                            <a class="next" href="?page={{next}}"></a>
-                        {% endif %}
-                    </div>
-                    <div class="notes_block">
-                        {% for note in notes_list %}
-                            <div class="note">
-                                <div class="note_top">
-                                    <div class="note_header">
-                                        <h1 class="header">{{ note.header }}</h1>
-                                    </div>
-                                    <div class="note_date">
-                                        <h6 class="date">{{ note.date|date:"Y-m-d" }}</h6>
-                                    </div>
-                                </div>
-                                <div class="note_middle">
-                                    <p class="text">{{ note.text }}</p>
-                                </div>
-                                <div class="note_bottom">
-                                    {{ imp }}
-                                        <div class="mark">
-                                            {% if note.is_important != True %}
-                                            <button id="marker_button" type="button" hx-post="{% url 'mark_note' note.pk %}">
-                                            </button>
-                                            {% else %}
-                                            <button id="marker_button_remove" type="button" hx-post="{% url 'mark_note' note.pk %}">
-                                            </button>
-                                            {% endif %}
+                            {% for page in pages_count_list %}
+                                {% if page == current_page %}
+                                    <a class="page current" href="?page={{page}}">{{page}}</a>
+                                {% else %}
+                                    <a class="page" href="?page={{page}}">{{page}}</a>
+                                {% endif %}
+                            {% endfor %}
+                            {% if next <= pages_count %}
+                                <a class="next" href="?page={{next}}"></a>
+                            {% endif %}
+                        </div>
+                        <div class="notes_block">
+                            {% for note in notes_list %}
+                                {% if not add_mode_collection %}
+                                <div class="note">
+                                    <div class="note_top">
+                                        <div class="note_header">
+                                            <h1 class="header">{{ note.header }}</h1>
                                         </div>
-                                    <div class="upd_del">
-                                        <a href="/notes/edit/{{ note.id }}/" class="update_btn"></a>
-                                        <a href="/notes/delete/{{ note.id }}/"class="del_btn"></a>
+                                        <div class="note_date">
+                                            <h6 class="date">{{ note.date|date:"Y-m-d" }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="note_middle">
+                                        <p class="text">{{ note.text }}</p>
+                                    </div>
+                                    <div class="note_bottom">
+                                        <div class="mark">
+                                            <button class='marker_button' type="button" hx-post="{% url 'mark_note' note.pk %}"></button>
+                                        </div>
+                                        <div class="upd_del">
+                                            <a href="/notes/edit/{{ note.id }}/" class="update_btn"></a>
+                                            <a href="/notes/delete/{{ note.id }}/" class="del_btn"></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                                {% else %}
+                                <button class="note" hx-post="{% url 'add_note_to_collection' collection_pk=add_mode_collection note_pk=note.id %}">
+                                    <div class="note_top">
+                                        <div class="note_header">
+                                            <h1 class="header">{{ note.header }}</h1>
+                                        </div>
+                                        <div class="note_date">
+                                            <h6 class="date">{{ note.date|date:"Y-m-d" }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="note_middle">
+                                        <p class="text">{{ note.text }}</p>
+                                    </div>
+                                    <div class="note_bottom">
+                                        <div class="mark">
+                                            <button class='marker_button' type="button" hx-post="{% url 'mark_note' note.pk %}"></button>
+                                        </div>
+                                        <div class="upd_del">
+                                            <a href="/notes/edit/{{ note.id }}/" class="update_btn"></a>
+                                            <a href="/notes/delete/{{ note.id }}/" class="del_btn"></a>
+                                        </div>
+                                    </div>
+                                </button>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                 </div>
+                
                 <div class="collections">
-                    <button id="btn_collection" type="button" hx-get="{% url 'create_collection_form' %}" hx-target="#create_collections_forms" hx-swap="beforeend">
-                        Add form
+                    <button type="button" hx-get="{% url 'create_collection_form' %}" hx-target="#create_collections_forms" hx-swap="beforeend">
+                        Add collection
                     </button>
-
-                    <div id="create_collections_forms" hx-target="this">
+    
+                    <div id="create_collections_forms"></div>
+    
+                    <div id='collections'>
                         {% for collection in collections %}
-                        <a href="/notes/read/?page={{current_page}}&sort_by={{collection.id}}">{{collection.name}}</a>
-                        <button type="button" hx-post="{% url 'delete_collection' collection.pk %}">Delete</button>
+                            <a href="/notes/read/?page={{current_page}}&collection={{collection.id}}">{{collection.name}}</a>
+                            <button type="button" hx-post="{% url 'delete_collection' collection.id %}">Delete</button>
+                            <a href='/notes/read/?page={{current_page}}&add_mode_to={{collection.id}}'>Add note</a>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </section>
     {% else %}
-    <section class="section-read_new">
-        <div class="section-read_new-wrapper">
-            <div class="no_notes">
-                <h3 class="no_notes_text">No new tasks are created</h3>
-                <h3 class="no_notes_link"><a class="link" href="/notes/create_note/">Create a new one!</a></h3>
+        <section class="section-read_new">
+            <div class="section-read_new-wrapper">
+                <div class="no_notes">
+                    <h3 class="no_notes_text">No new tasks are created</h3>
+                    <h3 class="no_notes_link"><a class="link" href="/notes/create/">Create a new one!</a></h3>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     {% endif %}
-
-<script>
-    let btn = document.getElementById('marker_button')
-    btn.addEventListener('click', click)
-
-    function click() {
-        btn.classList.add('active')
-    }
-</script>
 {% endblock %}

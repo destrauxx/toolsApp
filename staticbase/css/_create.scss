@@ -211,39 +211,11 @@
             .bottom_c {
                 width: 100%;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
                 align-items: center;
                 position: absolute;
                 bottom: 130px;
                 left: 10px;
-                .username_c {
-                    margin-left: 35px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                    transition: 0.3s ease-in-out;
-                    .profile_name_c {
-                        font-family: 'Montserrat Alternates', sans-serif;
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 16px;
-                        text-align: center;
-                        letter-spacing: 0.1em;
-                        color: #000000;
-                        transition: 0.5s;
-                    }
-                    &_icon {
-                        background: url('../media/login_and_reg_images/account.png');
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                        width: 27px;
-                        height: 27px;
-                    }
-                }
-                .username_c:hover {
-                    opacity: 0.6;
-                }
                 .logout_c {
                     display: flex;
                     justify-content: center;
